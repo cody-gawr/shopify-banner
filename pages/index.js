@@ -3,11 +3,19 @@ import React, { useEffect, useState } from 'react';
 import store from 'store-js';
 
 import ProductEmptyState from '../components/ProductEmptyState';
+import ProductPage from '../components/ProductPage';
 
-function index({ shopOrigin }) {
+function index({ host }) {
   const [isOpen, setIsOpen] = useState(false)
   const [products, setProducts] = useState([]);
   const [productsId, setProductsId] = useState([]);
+
+  useEffect(() => {
+    const productList = store.get(`${host}-products`);
+    if (productList) {
+      setProducts(productList);
+    }
+  }, []);
 
   useEffect(() => {
     const ids = products.map(product => {
@@ -21,7 +29,7 @@ function index({ shopOrigin }) {
   function handleProductionSelection(payload) {
     setIsOpen(false);
     setProducts(payload.selection);
-    store.set(`${shopOrigin}-products`, payload.selection);
+    store.set(`${host}-products`, payload.selection);
   }
 
   return (

@@ -16,3 +16,5 @@ function ProductPage({ setIsOpen, products }) {
     </Page>
   );
 }
+
+export default ProductPage;

@@ -14,3 +14,5 @@ function ProductEmptyState({ setIsOpen }) {
     </EmptyState>
   );
 }
+
+export default ProductEmptyState;
